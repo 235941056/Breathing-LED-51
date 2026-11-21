@@ -1,0 +1,25 @@
+#include <REGX51.H>
+#include "delay.h"
+void pwm(int x)
+{
+	int n;
+	for(n=0;n<20;n++)
+	{
+		P2=0xff,P2_5=0;
+		Delay(x);
+		P2=0x00;
+		Delay(10-x);
+	}
+}
+
+void main()
+{
+	int t;
+	while(1)
+	{
+		for(t=0;t<10;t++)
+			pwm(t);
+		for(t=10;t>0;t--)
+			pwm(t);
+	}
+}
